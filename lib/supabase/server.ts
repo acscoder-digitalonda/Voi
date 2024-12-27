@@ -16,7 +16,7 @@ export const createClient = () => {
           cookieStore.set(name, value, options)
         },
         remove(name: string, options: any) {
-          cookieStore.delete(name, options)
+          cookieStore.delete(name)
         },
       },
     }
