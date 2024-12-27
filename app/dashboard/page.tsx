@@ -10,13 +10,14 @@ import { User } from "@supabase/supabase-js"
 import { createClient } from "@/lib/supabase/client"
 import { Card,  CardContent } from "@/components/ui/card";
 import { Submission } from "../types/submission"
+import { useRouter } from "next/navigation" 
 
 export default function DashboardPage() {
   const [user, setUser] = useState<User | null>(null)
   const [submissions, setSubmissions] = useState<Submission[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const supabase = createClient()
-
+  const router = useRouter()  
   useEffect(() => {
     async function loadData() {
       try {
@@ -35,6 +36,8 @@ export default function DashboardPage() {
           if (error) throw error
           
           setSubmissions(data || [])
+        }else{
+          router.push("/")
         }
       } catch (error) {
         console.error('Error loading data:', error)
