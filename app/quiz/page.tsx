@@ -60,6 +60,7 @@ export default function QuizPage() {
             const data = await fetchStrapiAPI<StrapiQuestion[]>('/quizzes');
             
             if (data && data.data) {
+              console.log(data.data)
             const quizData = data.data;
             if (!quizData) {
                 throw new Error("No quiz data found");
@@ -68,7 +69,6 @@ export default function QuizPage() {
             let data_questions: QuestionType[] = [];
 
             quizData.forEach((question: StrapiQuestion) => {
-              
               data_questions.push({
                 id:question.id,
                 question:question.Question,
