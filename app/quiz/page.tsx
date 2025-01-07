@@ -63,11 +63,13 @@ export default function QuizPage() {
             if (!quizData) {
                 throw new Error("No quiz data found");
             }
-            const mappedQuestions: QuestionType[] = quizData.map((item: StrapiQuestion) => ({
-                id: item.id,
-                question: item.Question,
-                options: item.Answer.split("\n")
-            }));
+const mappedQuestions: QuestionType[] = quizData.data.map((item) => 
+    item.attributes.questions.data.map((question: StrapiQuestion) => ({
+        id: question.id,
+        question: question.Question,
+        options: question.Answer.split("\n")
+    }))
+).flat();
             
                 setQuestions(mappedQuestions);
                 setLoading(false);
