@@ -20,7 +20,7 @@ interface StrapiQuestion {
 
 // Define the interface for the Strapi API Response
 interface StrapiQuizResponse {
-    data: [StrapiQuestionWrap];
+    data: StrapiQuestionWrap[];
     meta: {
         pagination: {
             page: number;
@@ -57,7 +57,8 @@ export default function QuizPage() {
     useEffect(() => {
        const fetchQuestions = async () => {
         try {
-            const data = await fetchStrapiAPI<StrapiQuizResponse>('/quizzes');
+            const data = await fetchStrapiAPI<StrapiQuestion[]>('/quizzes');
+            
             if (data && data.data) {
             const quizData = data.data;
             if (!quizData) {
@@ -66,22 +67,16 @@ export default function QuizPage() {
 
             let data_questions: QuestionType[] = [];
 
-            quizData.forEach((element) => {
-              // Create an object that matches the `QuestionType` interface
-              const qt: QuestionType = {
-                id: element.id,
-                question: element.Question,
-                options: element.Answer.split("\n"),
-              };
-            
-              // Push the object into the array
-              data_questions.push(qt);
+            quizData.forEach((question: StrapiQuestion) => {
+              
+              data_questions.push({
+                id:question.id,
+                question:question.Question,
+                options:question.Answer.split("\n")
+              })
+               
             });
-            console.log(data_questions)
             
-            
- 
-
       
                 setQuestions(data_questions);
                 setLoading(false);
