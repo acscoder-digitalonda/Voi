@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { SheepCard } from "./components/sheep-card"
+import { HomeCarousel } from "./components/home-carousel"
 
 function Star({ className }: { className?: string }) {
   return <div className={`star ${className}`} />
@@ -16,22 +16,10 @@ export default function Home() {
       <Star className="bottom-[30%] right-[15%]" />
       <Star className="bottom-[20%] left-[25%]" />
       
-      <div className="max-w-md w-full space-y-12">
-        {/* Cards Container */}
-        <div className="grid grid-cols-3 gap-3 px-4">
-          <SheepCard variant="blue" />
-          <SheepCard variant="green" />
-          <SheepCard variant="red" />
-        </div>
+      <div className="max-w-md w-full">
+        <HomeCarousel />
 
-        <div className="text-center px-4">
-          <h1 className="text-4xl font-bold text-white mb-4">Welcome to Mo</h1>
-          <p className="text-lg text-gray-300">
-            We will ask you a few questions to personalize your experience.
-          </p>
-        </div>
-
-        <div className="space-y-4 px-4">
+        <div className="mt-8 space-y-4 px-4">
           <Link href="/quiz">
             <Button 
               className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-6 text-lg rounded-full"
