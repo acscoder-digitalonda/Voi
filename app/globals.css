@@ -80,3 +80,41 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .sheep-card {
+    @apply relative overflow-hidden rounded-3xl w-full aspect-[3/4];
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .sheep-card-blue {
+    @apply bg-blue-500/90;
+    background-image: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  }
+  
+  .sheep-card-green {
+    @apply bg-green-600/90;
+    background-image: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  }
+  
+  .sheep-card-red {
+    @apply bg-red-500/90;
+    background-image: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  }
+
+  .star {
+    @apply absolute w-1 h-1 bg-white/30 rounded-full;
+    animation: twinkle 1.5s infinite ease-in-out;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.dark-navy {
+  background-color: #0a0b1e;
+  background-image: radial-gradient(circle at center, #141537 0%, #0a0b1e 100%);
+}

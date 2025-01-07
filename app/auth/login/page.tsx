@@ -65,15 +65,15 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen dark-navy flex flex-col items-center justify-center p-4">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <Link href="/" className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700">
+          <Link href="/" className="inline-flex items-center text-sm text-gray-400 hover:text-gray-300">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to home
           </Link>
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">Sign in to your account</h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <h2 className="mt-6 text-3xl font-bold text-white">Sign in to your account</h2>
+          <p className="mt-2 text-sm text-gray-400">
             Enter your email and password to access your dashboard
           </p>
         </div>
@@ -90,7 +90,7 @@ export default function LoginPage() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="email@example.com" {...field} />
+                    <Input placeholder="email@example.com" {...field} className="bg-[#1a1b36] border-gray-800 text-white h-12" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -103,20 +103,20 @@ export default function LoginPage() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" {...field} />
+                    <Input type="password" {...field} className="bg-[#1a1b36] border-gray-800 text-white h-12" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full" disabled={isLoading}>
+            <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white h-12 rounded-full text-lg" disabled={isLoading}>
               {isLoading ? "Signing in..." : "Sign in"}
             </Button>
           </form>
         </Form>
-        <p className="text-center text-sm text-gray-600">
+        <p className="text-center text-sm text-gray-400">
           Don't have an account?{" "}
-          <Link href="/auth/register" className="font-medium text-primary hover:text-primary/80">
+          <Link href="/auth/register" className="text-indigo-400 hover:text-indigo-300">
             Create one
           </Link>
         </p>

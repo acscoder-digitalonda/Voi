@@ -1,31 +1,54 @@
 import { Button } from "@/components/ui/button"
-import { LockKeyhole } from "lucide-react"
 import Link from "next/link"
+import { SheepCard } from "./components/sheep-card"
+
+function Star({ className }: { className?: string }) {
+  return <div className={`star ${className}`} />
+}
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex flex-col items-center justify-center p-4">
-      <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <div className="flex justify-center">
-            <LockKeyhole className="h-12 w-12 text-primary" />
-          </div>
-          <h1 className="mt-6 text-3xl font-bold text-gray-900">Application Portal</h1>
-          <p className="mt-2 text-sm text-gray-600">
-            Sign in to access your dashboard and manage your applications
+    <div className="min-h-screen dark-navy flex flex-col items-center justify-center p-4 relative overflow-hidden">
+      {/* Stars */}
+      <Star className="top-[10%] left-[15%]" />
+      <Star className="top-[20%] right-[25%]" />
+      <Star className="top-[40%] left-[35%]" />
+      <Star className="bottom-[30%] right-[15%]" />
+      <Star className="bottom-[20%] left-[25%]" />
+      
+      <div className="max-w-md w-full space-y-12">
+        {/* Cards Container */}
+        <div className="grid grid-cols-3 gap-3 px-4">
+          <SheepCard variant="blue" />
+          <SheepCard variant="green" />
+          <SheepCard variant="red" />
+        </div>
+
+        <div className="text-center px-4">
+          <h1 className="text-4xl font-bold text-white mb-4">Welcome to Mo</h1>
+          <p className="text-lg text-gray-300">
+            We will ask you a few questions to personalize your experience.
           </p>
         </div>
-        <div className="mt-8 space-y-4">
-          <Link href="/auth/login">
-            <Button className="w-full mb-4" size="lg">
-              Sign In
+
+        <div className="space-y-4 px-4">
+          <Link href="/quiz">
+            <Button 
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-6 text-lg rounded-full"
+              size="lg"
+            >
+              Get started
             </Button>
           </Link>
-          <Link href="/auth/register">
-            <Button variant="outline" className="w-full" size="lg">
-              Create Account
-            </Button>
-          </Link>
+          
+          <div className="text-center">
+            <Link 
+              href="/auth/login" 
+              className="text-gray-400 hover:text-white text-sm"
+            >
+              Already have an account? <span className="text-indigo-400">Sign in</span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

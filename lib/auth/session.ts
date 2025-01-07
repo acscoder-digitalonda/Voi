@@ -1,13 +1,17 @@
-import { createClient } from '../supabase/client'
+import { createClient } from "../supabase/client"
+import { User } from "@supabase/supabase-js"
 
 export async function getSession() {
   const supabase = createClient()
-  try {
-    const { data: { session }, error } = await supabase.auth.getSession()
-    if (error) throw error
-    return session
-  } catch (error) {
-    console.error('Error:', error)
-    return null
-  }
+  const { data: { session } } = await supabase.auth.getSession()
+  return session
+}
+
+export type Session = {
+  user: User
+  access_token: string
+  expires_in: number
+  expires_at: number
+  refresh_token: string
+  token_type: string
 }
