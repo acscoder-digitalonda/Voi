@@ -3,23 +3,23 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import { Button } from "@/components/ui/button"
+import { Button } from "../../../components/ui/button"
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { createClient } from "@/lib/supabase/client"
+} from "../../../components/ui/form"
+import { Input } from "../../../components/ui/input"
+import { createClient } from "../../../lib/supabase/client"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "../../../hooks/use-toast"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
-import { AuthSeparator } from "@/components/auth/auth-separator"
-import { GoogleButton } from "@/components/auth/google-button"
+import { AuthSeparator } from "../../components/auth/auth-separator"
+import { GoogleButton } from "../../components/auth/google-button"
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -91,7 +91,7 @@ export default function RegisterPage() {
             <FormField
               control={form.control}
               name="name"
-              render={({ field }) => (
+              render={({ field }: { field: any }) => (
                 <FormItem>
                   <FormControl>
                     <Input 
@@ -107,7 +107,7 @@ export default function RegisterPage() {
             <FormField
               control={form.control}
               name="email"
-              render={({ field }) => (
+              render={({ field }: { field: any }) => (
                 <FormItem>
                   <FormControl>
                     <Input 
@@ -123,7 +123,7 @@ export default function RegisterPage() {
             <FormField
               control={form.control}
               name="password"
-              render={({ field }) => (
+              render={({ field }: { field: any }) => (
                 <FormItem>
                   <FormControl>
                     <Input 

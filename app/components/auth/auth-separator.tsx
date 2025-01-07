@@ -1,5 +1,5 @@
 interface AuthSeparatorProps {
-  children: React.ReactNode
+  children: string
 }
 
 export function AuthSeparator({ children }: AuthSeparatorProps) {
