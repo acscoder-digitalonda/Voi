@@ -20,7 +20,14 @@ interface StrapiQuestion {
 
 // Define the interface for the Strapi API Response
 interface StrapiQuizResponse {
-    data: StrapiQuestion[];
+    data: {
+        id: number;
+        attributes: {
+            questions: {
+                data: StrapiQuestion[];
+            };
+        };
+    }[];
     meta: {
         pagination: {
             page: number;
@@ -52,11 +59,16 @@ export default function QuizPage() {
         try {
             const data = await fetchStrapiAPI<StrapiQuizResponse>('/quizzes');
             if (data && data.data) {
-            const mappedQuestions: QuestionType[] = data.data.map((item: StrapiQuestion) => ({
+            const quizData = data.data;
+            if (!quizData) {
+                throw new Error("No quiz data found");
+            }
+            const mappedQuestions: QuestionType[] = quizData.map((item: StrapiQuestion) => ({
                 id: item.id,
                 question: item.Question,
                 options: item.Answer.split("\n")
             }));
+            
                 setQuestions(mappedQuestions);
                 setLoading(false);
             } else {

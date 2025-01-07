@@ -1,33 +1,30 @@
-// types/strapi.d.ts
-
-interface StrapiMetaPagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
+export interface StrapiQueryParams {
+  [key: string]: string | number | boolean | undefined | null | object;
+  populate?: string | string[] | '*'
 }
 
-interface StrapiMeta {
-  pagination: StrapiMetaPagination;
+export interface StrapiResponse<T> {
+  data: T;
+  meta: any;
 }
 
-interface StrapiData<T> {
+export interface HomePageResponse {
   id: number;
-  [key: string]: any;
-  attributes: T
+  documentId: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  Carousels: CarouselContent[];
 }
 
-interface StrapiResponse<T> {
-  data: StrapiData<T>[] | StrapiData<T>;
-  meta: StrapiMeta;
-}
-
-type StrapiQueryParams = Record<string, string | number | boolean>;
-
-export type {
-    StrapiResponse,
-    StrapiData,
-    StrapiMeta,
-    StrapiMetaPagination,
-    StrapiQueryParams
+export interface CarouselContent {
+  id: number;
+  Content: {
+    type: string;
+    level?: number;
+    children: {
+      text: string;
+      type: string;
+    }[];
+  }[];
 }
