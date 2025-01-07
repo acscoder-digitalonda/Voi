@@ -20,14 +20,7 @@ interface StrapiQuestion {
 
 // Define the interface for the Strapi API Response
 interface StrapiQuizResponse {
-    data: {
-        id: number;
-        attributes: {
-            questions: {
-                data: StrapiQuestion[];
-            };
-        };
-    }[];
+    data: [StrapiQuestionWrap];
     meta: {
         pagination: {
             page: number;
@@ -37,7 +30,14 @@ interface StrapiQuizResponse {
         };
     };
 }
-
+interface StrapiQuestionWrap {
+  id: number;
+  attributes: {
+      questions: {
+          data: StrapiQuestion[];
+      };
+  };
+}
 // Define the interface for quiz question
 interface QuestionType {
   id:number,
@@ -63,15 +63,27 @@ export default function QuizPage() {
             if (!quizData) {
                 throw new Error("No quiz data found");
             }
-const mappedQuestions: QuestionType[] = quizData.data.map((item) => 
-    item.attributes.questions.data.map((question: StrapiQuestion) => ({
-        id: question.id,
-        question: question.Question,
-        options: question.Answer.split("\n")
-    }))
-).flat();
+
+            let data_questions: QuestionType[] = [];
+
+            quizData.forEach((element) => {
+              // Create an object that matches the `QuestionType` interface
+              const qt: QuestionType = {
+                id: element.id,
+                question: element.Question,
+                options: element.Answer.split("\n"),
+              };
             
-                setQuestions(mappedQuestions);
+              // Push the object into the array
+              data_questions.push(qt);
+            });
+            console.log(data_questions)
+            
+            
+ 
+
+      
+                setQuestions(data_questions);
                 setLoading(false);
             } else {
                 setError("Failed to fetch quiz questions.");
